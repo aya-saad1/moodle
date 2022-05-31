@@ -175,6 +175,7 @@ class completion_completion extends data_object {
 
         // Notify user.
         $course = get_course($data->course);
+        $oldforcelang = force_current_language($USER->lang);
         $messagesubject = get_string('coursecompleted', 'completion');
         $a = [
             'coursename' => get_course_display_name_for_list($course),
@@ -202,6 +203,7 @@ class completion_completion extends data_object {
             ];
         }
         message_send($eventdata);
+        force_current_language($oldforcelang);
 
         return $result;
     }
